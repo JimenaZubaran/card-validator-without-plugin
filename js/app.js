@@ -1,22 +1,53 @@
 const form = document.querySelector("form");
 console.log(form); 
+const inputName = document.getElementById("name");
 //Variables globales
-//Eventos 
-//funciones
 
-const cvvFunc = element =>{
-    console.log(element.length)
+
+
+//Eventos
+inputName.addEventListener("keypress", onlyString);
+
+
+//funciones
+function onlyString() {
+    console.log("siii")
+    return event.charCode >= 65 && event.charCode <= 90;
+}
+
+
+const nameFunction = element => {
+    let nameValue = element.value;
+    let typeName = typeof nameValue;
+    console.log(typeName);
+    if(nameValue.length <= 5){
+        onlyString(nameValue);
+        element.className = "success";
+        console.log("name bien")
+    }else{
+        //let cvvValue = element.value;
+        element.className = "error";  
+    }
+    console.log(" name ")
+}
+
+const cvvFunction = element =>{
     let cvvValue = element.value;
     if(cvvValue > 100 && cvvValue.length === 3){
       //  let cvvInput = document.getElementById("cvv");
         element.className = "success";
         console.log("esta bien")
+        return true;
     }else{
-        let cvvValue = element.value;
+        //let cvvValue = element.value;
         element.className = "error";
         console.log("esta mal");
+        return false
     }
-    console.log("holaa amigos");
+}
+
+const cardNumberFuntion = element => {
+    console.log("holii")
 }
 
 const validateCardDetails = element => {
@@ -32,7 +63,11 @@ const validateCardDetails = element => {
     console.log(cvv);
     console.log(name);
 
-    cvvFunc(cvv);
+    cardNumberFuntion(cardNumber);
+    //expirationDateFunction(expirationDate);
+    cvvFunction(cvv);
+    nameFunction(name);
+
   }
  
 form.addEventListener("submit", e => {
