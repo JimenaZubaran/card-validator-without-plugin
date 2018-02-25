@@ -5,3 +5,11 @@
 .error{
     border: 2px solid red;
 }
+#exp-month,
+#exp-year{
+    width: 5vw;
+}
+
+.form-group{
+    margin: 2% 0;
+}
