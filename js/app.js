@@ -58,19 +58,17 @@ const expirationMonthFunction= element =>{
 const cardNumberFuntion = element => {
     let sum = 0;
     //Convertir valor del input en array de números e invertirlo
-    let cardNumberValue = Array.from(cn.value);
-    //console.log(cn);
-    let numberArray = cardNumberValue.map(num => {
-      console.log(Number(num));
-        return Number(num);
-    }).reverse();
+    let cardNumberValue = Array.from(element.value);
+    let numberArray = cardNumberValue.map(num => { return Number(num); }).reverse();
     
     numberArray.forEach((num, index) =>{
       if (index % 2 != 0) { //seleccionar índices pares y multiplicarlos por 2
-        var evenNumber = num * 2;
-        if (evenNumber > 9) { //si son mayor a 9 convertir a string y sumar su índice 0 y 1
+        let evenNumber = num * 2;
+        if (evenNumber > 9) { //si son mayor a 9 sumar el valor de su índice 0 y 1
             evenNumber = evenNumber.toString();
-            var sumEvenNumber = Number(evenNumber[0]) + Number(evenNumber[1]) //Convertir a número y agregarlos a la suma
+            let evenNumeZero = Number(evenNumber[0]);
+            let evenNumeOne = Number(evenNumber[1]);
+            let sumEvenNumber =  evenNumeZero + evenNumeOne; //Agregarlos a la suma
             sum = sum + sumEvenNumber; 
             } else {
                 sum = sum + evenNumber;
@@ -81,7 +79,7 @@ const cardNumberFuntion = element => {
     });
 
 
-  if (sum % 10 === 0) { //Dividir la suma entre 10
+  if (sum % 10 === 0) { //Dividir la suma entre 10, si es módulo 0 cambiar la clase a "success", si no lo es a "error"
     element.className = 'success'
     return true;
     } else {
